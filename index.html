@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div>
+      <canvas id="testCanvas" width="550" height="500"></canvas>
+    </div>
+    
+    
+    <!-- Background Music -->
+    <audio id="backgroundMusic" src="Music/Up Dharma Down - Tadhana (Instrumental).mp3" autoplay loop></audio>
+
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+      integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+      crossorigin="anonymous"></script>
+    <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1524180/codepen-template-1.0.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+      // Attempt to autoplay music when the page is loaded
+      window.addEventListener("load", () => {
+        var audio = document.getElementById('backgroundMusic');
+        audio.play().then(() => {
+          console.log("Music is playing.");
+        }).catch((error) => {
+          console.error("Autoplay blocked or error:", error);
+          // Fallback: Attempt to play after user clicks anywhere on the page
+          document.body.addEventListener('click', () => {
+            audio.play().then(() => {
+              console.log("Music is playing after click.");
+            }).catch((error) => {
+              console.error("Still unable to play:", error);
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
